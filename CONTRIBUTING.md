@@ -57,7 +57,7 @@ This is called [Semantic Commit Messages](https://seesparkbox.com/foundry/semant
 Here's what a commit message should look like:
 
 ```txt
-feat(Occurrences): implement API client to fetch occurrence data
+feat(Occurrences): implement api resource to provide data
 ^--^ ^---------^   ^-------------------------------------------^
 |    |             |
 |    |             +-> Description of the work in the present tense.
@@ -70,6 +70,6 @@ feat(Occurrences): implement API client to fetch occurrence data
 ## Branching strategy
 We will be using the **branch-per-issue** workflow.
 
-This means, that for each open [issue](https://github.com/vostpt/api/issues), we'll create a corresponding **git** branch.
+This means, that for each open [issue](https://github.com/vostpt/VOST4CROWD/issues), we'll create a corresponding **git** branch.
 
 For instance, issue `#123` should have a corresponding `V4C-123/ShortTaskDescription` branch, which **MUST** branch off the latest code in `master`.
