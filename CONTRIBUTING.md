@@ -2,7 +2,7 @@
 First and foremost, we appreciate your interest in this project. This document contains essential information, should you want to contribute.
 
 ## Development discussion
-For bugs, new features or improvements, open a new [issue](https://github.com/vostpt/api/issues/new).
+For bugs, new features or improvements, open a new [issue](https://github.com/vostpt/VOST4CROWD/issues/new).
 
 ## Which Branch?
 Pull requests should always be done against the `master` branch.
