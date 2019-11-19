@@ -14,7 +14,8 @@ const routes = [
         name: 'home',
         component: Home,
         meta: {
-            auth: false
+            auth: undefined,
+            isFluid: true
         }
     },
     {
@@ -50,6 +51,9 @@ const routes = [
         }
     },
 ]
+
+
+
 
 const router = new VueRouter({
     history: true,

@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/{any}', 'FrontendController@index')->where('any', '^(?!api\/)[\/\w\.-]*');
+Route::get('/{any}', 'FrontendController@index')->where('any', '^(?!api|files\/)[\/\w\.-]*');
+

@@ -1,11 +1,9 @@
 <template>
     <b-row class="justify-content-md-center m-5">
         <b-col col md="6">
+            <b-alert :show="hasError" variant="danger">Unauthorized.</b-alert>
             <b-card header="Login">
                 <b-card-body>
-                    <b-alert>
-                        <p>Error!</p>
-                    </b-alert>
                     <form autocomplete="off" @submit.prevent="login" method="post">
                         <div class="form-group">
                             <label for="email">E-mail</label>
@@ -31,8 +29,6 @@
             </b-card>
         </b-col>
     </b-row>
-
-
 </template>
 
 <script>
@@ -45,9 +41,6 @@
                 hasError: false
             }
         },
-        mounted() {
-            //
-        },
         methods: {
             login() {
                 let app = this
@@ -56,7 +49,7 @@
                         email: app.email,
                         password: app.password
                     },
-                    error: function () {
+                    error: function (error) {
                         this.hasError = true;
                     }
                 })

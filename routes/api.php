@@ -18,10 +18,13 @@ Route::post('auth/login', 'AuthController@login');
 Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('auth/logout', 'AuthController@logout');
-    Route::post('auth/refresh', 'AuthController@refresh');
+    Route::get('auth/refresh', 'AuthController@refresh');
     Route::get('auth/me', 'AuthController@me');
 
-    Route::get('example','ExampleApiController@index');
+    Route::apiResource('projects','ProjectsController')
+        ->only(['index','store']);
+    Route::apiResource('projects.icons', 'ProjectsIconsController')
+        ->only(['store','destroy']);
 });
 
 
