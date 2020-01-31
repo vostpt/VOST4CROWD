@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
@@ -40,24 +41,22 @@ class ProjectsIconsController extends ApiController
     {
         $project = $this->projectRepository->findById($id);
 
-        try{
-
+        try {
             $storageDisk = Storage::disk('public');
 
-            if (!empty($project->icon)) {
+            if (! empty($project->icon)) {
                 $storageDisk->delete($project->icon);
             }
 
             $uploadedFile = $request->file('icon');
-            $filename = uniqid('vostpt_icon_').'.'.$uploadedFile->getClientOriginalExtension();
-            $basePath = 'files/projects/%s';
-            $fileBasePath = sprintf($basePath, $project->uuid);
-            $path = $storageDisk->putFileAs($fileBasePath, $uploadedFile, $filename);
+            $filename     = \uniqid('vostpt_icon_').'.'.$uploadedFile->getClientOriginalExtension();
+            $basePath     = 'files/projects/%s';
+            $fileBasePath = \sprintf($basePath, $project->uuid);
+            $path         = $storageDisk->putFileAs($fileBasePath, $uploadedFile, $filename);
 
             $project->icon = $path;
             $project->save();
-
-        }catch (\Throwable $t){
+        } catch (\Throwable $t) {
             return $this->respond()->internalServerError();
         }
 
@@ -100,7 +99,6 @@ class ProjectsIconsController extends ApiController
         $storageDisk = Storage::disk('public');
         $storageDisk->delete($project->icon);
 
-        return $this->respond()->success([],"Deleted.");
+        return $this->respond()->success([], 'Deleted.');
     }
-
 }

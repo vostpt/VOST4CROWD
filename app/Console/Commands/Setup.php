@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -40,15 +41,15 @@ class Setup extends Command
      */
     public function handle()
     {
-        $data['name'] = $this->ask('Name ? ');
-        $data['email'] = $this->ask('Email ? ');
-        $data['password'] = $this->secret('Password ? ');
+        $data['name']                  = $this->ask('Name ? ');
+        $data['email']                 = $this->ask('Email ? ');
+        $data['password']              = $this->secret('Password ? ');
         $data['password_confirmation'] = $this->secret('Password (confirm) ? ');
 
 
         $validator = Validator::make($data, [
-            'name' => ['required', 'min:2'],
-            'email' => ['required', 'email'],
+            'name'     => ['required', 'min:2'],
+            'email'    => ['required', 'email'],
             'password' => ['required', 'confirmed', 'min:6'],
         ]);
 
@@ -62,11 +63,10 @@ class Setup extends Command
         }
 
         if ($this->confirm('Are you sure ?')) {
-
-            try{
+            try {
                 Artisan::call('migrate:fresh');
                 User::create($data);
-            }catch (\Throwable $t){
+            } catch (\Throwable $t) {
                 $this->error($t->getMessage());
                 return 1;
             }

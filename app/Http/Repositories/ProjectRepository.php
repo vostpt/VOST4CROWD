@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 
 namespace App\Http\Repositories;
-
 
 use App\Http\Repositories\Contracts\ProjectRepositoryInterface;
 use App\Models\Project;

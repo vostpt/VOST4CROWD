@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
@@ -82,16 +83,14 @@ class ProjectsController extends ApiController
         $project = $this->projectRepository->findById($id);
 
         // TODO get requirements validation and implement
-        if(!$request->hasFile('icon')){
+        if (! $request->hasFile('icon')) {
             $this->respond()->validationFailed();
         }
 
         $uploadedFile = $request->file('icon');
 
-        $path = sprintf('projects/%s/%s',$project->uuid,'cenas.'.$uploadedFile->getClientOriginalExtension());
+        $path = \sprintf('projects/%s/%s', $project->uuid, 'cenas.'.$uploadedFile->getClientOriginalExtension());
         dd($path);
         $uploadedFile->storePubliclyAs();
-
-
     }
 }

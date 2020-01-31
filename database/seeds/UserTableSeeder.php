@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -12,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserTableSeeder::class);
-        $this->call(ProjectTableSeeder::class);
+        factory(User::class, 5)->create();
     }
 }

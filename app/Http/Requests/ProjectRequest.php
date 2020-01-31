@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
@@ -24,14 +25,14 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'options' => 'required|array',
-            'options.*.field_label' => 'required|string',
-            'options.*.field_name' => 'required|string',
-            'options.*.field_type' => 'required|string|in:boolean,string,integer,decimal',
+            'title'                    => 'required|string',
+            'description'              => 'nullable|string',
+            'options'                  => 'required|array',
+            'options.*.field_label'    => 'required|string',
+            'options.*.field_name'     => 'required|string',
+            'options.*.field_type'     => 'required|string|in:boolean,string,integer,decimal',
             'options.*.field_nullable' => 'required|boolean',
-            'status' => 'required|integer|in:0,1'
+            'status'                   => 'required|integer|in:0,1',
         ];
     }
 }

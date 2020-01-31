@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Repositories;
 
@@ -35,7 +36,6 @@ abstract class Repository implements RepositoryInterface
      */
     abstract public function model();
 
-
     public function getModel()
     {
         return $this->model;
@@ -59,8 +59,8 @@ abstract class Repository implements RepositoryInterface
 
         $model = $this->app->make($modelClass);
 
-        if (!$model instanceof Model) {
-            throw new Exception("Class {$this->model()} must be an instance of " . Model::class);
+        if (! $model instanceof Model) {
+            throw new Exception("Class {$this->model()} must be an instance of ".Model::class);
         }
 
         $this->model = $model;
@@ -78,7 +78,7 @@ abstract class Repository implements RepositoryInterface
 
     public function getTable()
     {
-        return mb_strtolower(Str::plural($this->model()));
+        return \mb_strtolower(Str::plural($this->model()));
     }
 
     public function findById($id, $columns = ['*'])
@@ -97,7 +97,7 @@ abstract class Repository implements RepositoryInterface
         return $model;
     }
 
-    public function getAll($columns = ['*']) : Collection
+    public function getAll($columns = ['*']): Collection
     {
         if ($this->model instanceof Builder) {
             $results = $this->model->get($columns);
@@ -137,7 +137,7 @@ abstract class Repository implements RepositoryInterface
     protected function applyConditions(array $where)
     {
         foreach ($where as $field => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 list($field, $condition, $val) = $value;
                 if ($condition == 'in') {
                     $this->model = $this->model->whereIn($field, $val);
