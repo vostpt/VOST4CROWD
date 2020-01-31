@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('slug')->unique();
             $table->string('description')->nullable();
             $table->string('icon')->nullable();
-            $table->json('options');
+            $table->json('fields');
             $table->tinyInteger('status')->default(1); // Status of the record: 0-inactive,1-active
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();

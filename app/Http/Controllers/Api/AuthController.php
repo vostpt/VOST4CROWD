@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized.',
-                'data' => []
+                'data'    => [],
             ], 401);
         }
 
@@ -49,7 +50,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Success.',
-            'data' => auth()->user()
+            'data'    => auth()->user(),
         ]);
     }
 
@@ -65,7 +66,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Successfully logged out',
-            'data' => auth()->user()
+            'data'    => auth()->user(),
         ]);
     }
 
@@ -91,11 +92,11 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Authenticated.',
-            'data' => [
+            'data'    => [
                 'access_token' => $token,
-                'token_type' => 'bearer',
-                'expires_in' => $this->auth->factory()->getTTL() * 60
-            ]
+                'token_type'   => 'bearer',
+                'expires_in'   => $this->auth->factory()->getTTL() * 60,
+            ],
         ])->header('Authorization', $token);
     }
 }

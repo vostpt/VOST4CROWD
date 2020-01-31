@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 
 namespace App\Http\Repositories\Contracts;
@@ -11,7 +12,7 @@ interface RepositoryInterface
 
     public function create(array $attributes);
 
-    public function getAll() : Collection;
+    public function getAll(): Collection;
 
     public function update($id, array $attributes);
 

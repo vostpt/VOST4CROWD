@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 
 namespace App\Http\Repositories\Contracts;
-
 
 use Illuminate\Support\Collection;
 
@@ -12,7 +12,7 @@ interface ProjectRepositoryInterface
 
     public function create(array $attributes);
 
-    public function getAll() : Collection;
+    public function getAll(): Collection;
 
     public function update($id, array $attributes);
 

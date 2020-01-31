@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
@@ -24,7 +25,7 @@ class ProjectIconRequest extends FormRequest
     public function rules()
     {
         return [
-            'icon' => 'required|file|image|mimetypes:image/png|dimensions:max_width=25,max_height=25'
+            'icon' => 'required|file|image|mimetypes:image/png|dimensions:max_width=25,max_height=25',
         ];
     }
 }

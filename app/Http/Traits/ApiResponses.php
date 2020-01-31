@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Traits;
 
@@ -25,8 +26,8 @@ trait ApiResponses
         $this->data = [
             'success' => false,
             'message' => null,
-            'errors' => [],
-            'data' => new stdClass()
+            'errors'  => [],
+            'data'    => new stdClass(),
         ];
         return $this;
     }
@@ -56,10 +57,10 @@ trait ApiResponses
      * @param  array  $errors
      * @return JsonResponse
      */
-    public function validationFailed($message = "Validation failed.", $errors = [])
+    public function validationFailed($message = 'Validation failed.', $errors = [])
     {
         $this->data['message'] = $message;
-        $this->data['errors'] = $errors;
+        $this->data['errors']  = $errors;
 
         return new JsonResponse($this->data, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -72,17 +73,16 @@ trait ApiResponses
      */
     protected function success($data = [], $message = 'Success.', $status = Response::HTTP_OK)
     {
-
         $returnDataArray = $data['data'] ?? $data;
         unset($returnDataArray['meta']);
 
         $this->data['success'] = true;
         $this->data['message'] = $message;
-        $this->data['meta'] = $data['meta'] ?? [];
+        $this->data['meta']    = $data['meta'] ?? [];
 
-        if (is_array($this->data['data'])) {
+        if (\is_array($this->data['data'])) {
             $this->data['data'] = [];
-            $this->data['data'] = array_merge($this->data['data'], $returnDataArray);
+            $this->data['data'] = \array_merge($this->data['data'], $returnDataArray);
         } else {
             $this->data['data'] = $returnDataArray;
         }
@@ -95,9 +95,9 @@ trait ApiResponses
      * @param  string  $message
      * @return JsonResponse
      */
-    public function created($data, $message = "Created.")
+    public function created($data, $message = 'Created.')
     {
-        return $this->success($data, $message,Response::HTTP_CREATED);
+        return $this->success($data, $message, Response::HTTP_CREATED);
     }
 
     /**
@@ -105,9 +105,9 @@ trait ApiResponses
      * @param  string  $message
      * @return JsonResponse
      */
-    public function updated($data, $message = "Created.")
+    public function updated($data, $message = 'Created.')
     {
-        return $this->success($data, $message,Response::HTTP_ACCEPTED);
+        return $this->success($data, $message, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -140,5 +140,4 @@ trait ApiResponses
         $this->data['message'] = $message;
         return new JsonResponse($this->data, Response::HTTP_FORBIDDEN);
     }
-
 }
