@@ -23,6 +23,7 @@ import '../assets/vendor/font-awesome/css/font-awesome.min.css'
 import App from './pages/Index'
 import auth from './auth'
 import router from './router'
+import store from './store'
 
 Vue.use(BootstrapVue)
 
@@ -45,4 +46,5 @@ const app = new Vue({
     el: '#app',
     components: { App },
     router,
+    store
 });
