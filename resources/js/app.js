@@ -12,19 +12,17 @@ require('./bootstrap');
 const files = require.context('./components', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueAuth from '@websanova/vue-auth'
 import VueAxios from 'vue-axios'
+import '../assets/scss/argon.scss'
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '../assets/vendor/font-awesome/css/font-awesome.min.css'
 import App from './pages/Index'
 import auth from './auth'
 import router from './router'
-
 
 Vue.use(BootstrapVue)
 

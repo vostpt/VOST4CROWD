@@ -18,12 +18,13 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('description')->nullable();
-            $table->string('logo');
+            $table->string('icon')->nullable();
             $table->json('options');
             $table->tinyInteger('status')->default(1); // Status of the record: 0-inactive,1-active
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
             // FK
             $table->foreign('created_by')
