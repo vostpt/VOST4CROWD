@@ -65,134 +65,6 @@
                                     @change="handleFileIcon"
                                 ></b-form-file>
                             </b-form-group>
-                            <b-card>
-                                <template v-slot:header>
-                                    <h6 class="mb-0">Fields
-                                        <b-button type="button" @click="newOption" size="sm" class="float-right" variant="success">
-                                            <i class="fa fa-plus"></i>
-                                        </b-button>
-                                    </h6>
-                                </template>
-                                <!-- START OPTIONS -->
-                                <div v-for="(option,idx) in form.options">
-                                    <b-row>
-                                        <b-col col sm="4">
-                                            <b-form-group
-                                                id="field_label"
-                                                label="Label"
-                                                label-for="field_name"
-                                            >
-                                                <b-form-input v-model="option.field_label"></b-form-input>
-                                            </b-form-group>
-                                        </b-col>
-                                        <b-col col sm="3">
-                                            <b-form-group
-                                                id="field_name"
-                                                label="Name"
-                                                label-for="field_name"
-                                            >
-                                                <b-form-input v-model="option.field_name"></b-form-input>
-                                            </b-form-group>
-                                        </b-col>
-                                        <b-col col sm="2">
-                                            <b-form-group
-                                                id="field_type"
-                                                label="Field Type"
-                                                label-for="field_type"
-                                            >
-                                                <b-form-select v-model="option.field_type" :options="fieldTypeOptions"></b-form-select>
-                                            </b-form-group>
-                                        </b-col>
-                                        <b-col col sm="2">
-                                            <b-form-group
-                                                id="field_nullable"
-                                                label="Is Nullable ?"
-                                                label-for="field_nullable"
-                                            >
-                                                <b-form-select v-model="option.field_nullable" :options="optionsFieldNullableOptions"></b-form-select>
-                                            </b-form-group>
-                                        </b-col>
-                                        <b-col col sm="1">
-                                            <b-button type="button" style="margin-top: 35px;" @click="removeOption(idx)" size="sm" variant="danger">
-                                                <i class="fa fa-trash-o"></i>
-                                            </b-button>
-                                        </b-col>
-                                    </b-row>
-                                </div>
-                                <!-- END OPTIONS -->
-                            </b-card>
-                            <b-row>
-                                <b-col>
-                                    <BTextInputWithValidation
-                                        rules="required"
-                                        type="text"
-                                        label="Title"
-                                        name="Title"
-                                        v-model="form.title"
-                                        placeholder="Enter title"
-                                        size="sm"
-                                    />
-                                </b-col>
-                                <b-col col md="4">
-                                    <BSelectWithValidation
-                                        rules="required"
-                                        label="Status"
-                                        v-model="form.status"
-                                        size="sm"
-                                    >
-                                        <template v-for="item in statusOptions">
-                                            <option
-                                                :value="item.value"
-                                                :selected="item.value === 1"
-                                            >
-                                                {{ item.text }}
-                                            </option>
-                                        </template>
-                                    </BSelectWithValidation>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col col md="12">
-                                    <b-form-group
-                                        id="description"
-                                        label="Description"
-                                        label-for="description"
-                                    >
-                                        <b-form-input
-                                            type="text"
-                                            v-model="form.description"
-                                            name="description"
-                                            size="sm"
-                                        ></b-form-input>
-                                    </b-form-group>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col col md="12">
-                                    <ValidationProvider
-                                        name="icon"
-                                        rules="required|ext:png"
-                                        v-slot="{ valid, errors }"
-                                    >
-                                        <b-form-group
-                                            id="icon"
-                                            label="Icon"
-                                            label-for="icon"
-                                        >
-                                            <b-form-file
-                                                id="icon"
-                                                name="icon"
-                                                v-model="form.icon"
-                                                placeholder="Please pick the icon for the map"
-                                                @change="handleFileIcon"
-                                                size="sm"
-                                            ></b-form-file>
-                                            <b-form-invalid-feedback id="inputLiveFeedback">{{ errors[0] }}</b-form-invalid-feedback>
-                                        </b-form-group>
-                                    </ValidationProvider>
-                                </b-col>
-                            </b-row>
-
                             <b-row class="mt-3">
                                 <b-col>
                                     <h6>Fields
@@ -357,7 +229,7 @@
                     title: '',
                     description: '',
                     icon: '',
-                    options: [
+                    fields: [
                         {
                             label: '',
                             name: '',
