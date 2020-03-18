@@ -9,15 +9,6 @@ use Illuminate\Support\Str;
 /** @var Factory $factory */
 $factory->define(Project::class, function (Faker $faker) {
 
-    $listOfTypesForField = [
-        'string',
-        'boolean',
-        'decimal',
-        'integer',
-        'single_choice',
-        'multi_choice',
-    ];
-
     $data = [
         'title'       => $faker->name(),
         'description' => $faker->sentence(),
@@ -32,7 +23,7 @@ $factory->define(Project::class, function (Faker $faker) {
             'label'    => $name,
             'name'     => Str::snake($name),
             'nullable' => $faker->boolean(),
-            'type'     => $faker->randomElement($listOfTypesForField),
+            'type'     => $faker->randomElement(Project::$fieldsTypesList),
             'icon'     => null,
         ];
     }
